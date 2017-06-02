@@ -23,11 +23,23 @@ class AppleTree implements TreeInterface {
 		$this->blossom = ($this->age * 2) * $this->branches;
 		echo "It has " . $this->blossom . " blossoms.<br/>";
 	}
+	function watch(){
+		$bugs = rand(0,1);
+		if($bugs){
+			echo "Found bugs on apples.  ";
+			//subtract 10 apples
+			echo "Sprayed tree with insecticide.  ";
+		}
+	}
 	function spring(){
 		echo "It's springtime!  ";
 		$this->grow();
 		$this->beginGrowth();
-		echo "<br/><br/>";
+	}
+	function summer(){
+		echo "It's summertime!  ";
+		$this->watch();
+		echo"<br/><br/>";
 	}
 	
 }
