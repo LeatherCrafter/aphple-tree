@@ -4,7 +4,11 @@ namespace Learning;
 interface TreeInterface {
     function grow();
     function beginGrowth();
+    function watch();
+    function harvest();
     function spring();
+    function summer();
+    function fall();
 }
 
 class AppleTree implements TreeInterface {
@@ -31,6 +35,9 @@ class AppleTree implements TreeInterface {
             echo "Sprayed tree with insecticide.  ";
 		}
 	}
+    function harvest(){
+        //echo final apple count
+    }
     function spring(){
         echo "It's springtime!  ";
         $this->grow();
@@ -41,4 +48,8 @@ class AppleTree implements TreeInterface {
         $this->watch();
         echo"<br/><br/>";
 	}
+    function fall(){
+        echo "It's fall, time to harvest!  ";
+        $this->harvest();
+    }
 }
