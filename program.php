@@ -1,34 +1,14 @@
 <?php
 namespace Learning;
-
+require_once 'tree_interface.php';
 require_once 'tree.php';
-
-class Season {
-    function __construct(){
-        
-    }
-    function spring(){
-        echo "It's springtime!  ";
-        
-        echo "<br/>";
-	}
-    function summer(){
-        echo "It's summertime!  ";
-        
-        echo"<br/>";
-	}
-    function fall(){
-        echo "It's fall, time to harvest!  ";
-        
-        echo "<br/>";
-    }
-    function winter(){
-        echo "It's wintertime!  ";
-        
-        echo "<br/><br/>";
-    }
-}
-
+require_once 'seasons.php';
+    
 for ($i = 0; $i < 10; $i++){
-
+    $trees[] = new AppleTree;
+    $seasons = new Season($trees);
+    $seasons->spring();
+    $seasons->summer();
+    $seasons->fall();
+    $seasons->winter();
 }
