@@ -11,19 +11,19 @@ class AppleTree implements TreeInterface {
         $this->age++;
         $this->height = $this->height + 4;
         $this->branches = $this->branches + 2;
-        echo "The apple tree is $this->age years old, $this->height inches tall, and has $this->branches branches.  ";
+        echo "The apple tree is $this->age years old, $this->height inches tall, and has $this->branches branches.<br/>";
 	}
     function bloom(){
         echo "The apple tree is blooming!  ";
         $this->blossom = ($this->age * 2) * $this->branches;
-        echo "It has " . $this->blossom . " blossoms.  ";
+        echo "It has " . $this->blossom . " blossoms.<br/>";
 	}
     function watch(){
         $bugs = rand(0,1);
         if($bugs){
             echo "Found bugs on apples.  ";
             //subtract 10 apples
-            echo "Sprayed tree with insecticide.  ";
+            echo "Sprayed tree with insecticide.<br/>";
 		}
 	}
     function harvest(){
@@ -33,8 +33,7 @@ class AppleTree implements TreeInterface {
         $bad_limb = rand(0,1);
         if ($bad_limb){
             $this->branches--;
-            echo "Pruned an undesirable branch off the tree.  ";
+            echo "Pruned an undesirable branch off the tree.<br/>";
         }
     }
-    
 }
