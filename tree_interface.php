@@ -1,7 +1,9 @@
 <?php
+
 namespace Learning;
 
-interface TreeInterface {
+interface TreeInterface 
+{
     function grow();
     function bloom();
     function watch();

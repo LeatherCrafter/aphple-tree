@@ -1,24 +1,36 @@
 <?php
+
 namespace Learning;
+
 require_once 'tree_interface.php';
 
-class AppleTree implements TreeInterface {
+class AppleTree implements TreeInterface 
+{
     private $age = 4;
+    
     private $height = 72;
+    
     private $branches = 10;
+    
     private $blossom = 0;
-    function grow(){
+    
+    function grow()
+    {
         $this->age++;
         $this->height = $this->height + 4;
         $this->branches = $this->branches + 2;
         echo "The apple tree is $this->age years old, $this->height inches tall, and has $this->branches branches.<br/>";
 	}
-    function bloom(){
+    
+    function bloom()
+    {
         echo "The apple tree is blooming!  ";
         $this->blossom = ($this->age * 2) * $this->branches;
         echo "It has " . $this->blossom . " blossoms.<br/>";
 	}
-    function watch(){
+    
+    function watch()
+    {
         $bugs = rand(0,1);
         if($bugs){
             echo "Found bugs on apples.  ";
@@ -26,10 +38,14 @@ class AppleTree implements TreeInterface {
             echo "Sprayed tree with insecticide.<br/>";
 		}
 	}
-    function harvest(){
+    
+    function harvest()
+    {
         //echo final apple count
     }
-    function prune(){
+    
+    function prune()
+    {
         $bad_limb = rand(0,1);
         if ($bad_limb){
             $this->branches--;
