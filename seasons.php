@@ -23,6 +23,7 @@ class Season
             $tree->grow();
             $tree->bloom();
         });
+        echo "<br/>";
 	}
     
     function summer()
@@ -31,6 +32,7 @@ class Season
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->watch();
         });
+        echo "<br/>";
 	}
     
     function fall()
@@ -39,6 +41,7 @@ class Season
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->harvest();
         });
+        echo "<br/><br/>";
     }
     
     function winter()
