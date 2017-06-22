@@ -2,16 +2,14 @@
 
 namespace Learning;
 
-class Flower 
+require_once 'fruit.php';
+
+class Flower
 {
-    public $fruit_array = array();
+    private $fruitArray = [];
     
-    function apple()
+    function produceFruit()
     {
-	    $fruit = rand (0, 1);
-        
-	    if ($fruit){
-		    array_push($this->fruit_array, 1);
-		}	
-    }	
+        $fruitArray = new Fruit;
+    }
 }
