@@ -18,7 +18,7 @@ class Season
     
     function spring()
     {
-        echo "It's springtime!  ";
+        echo "It's springtime!<br/>";
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->grow();
             $tree->bloom();
@@ -28,7 +28,7 @@ class Season
     
     function summer()
     {
-        echo "It's summertime!  ";
+        echo "It's summertime!<br/>";
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->watch();
         });
@@ -37,16 +37,16 @@ class Season
     
     function fall()
     {
-        echo "It's fall, time to harvest!  ";
+        echo "It's fall, time to harvest!<br/>";
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->harvest();
         });
-        echo "<br/><br/>";
+        echo "<br/>";
     }
     
     function winter()
     {
-        echo "It's wintertime!  ";
+        echo "It's wintertime!<br/>";
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->prune();
         });
