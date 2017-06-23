@@ -13,11 +13,13 @@ class AppleTree implements TreeInterface
     
     private $branches = 10;
     
-    private $blossom = 0;
+    private $blossomAmount = 0;
     
     private $blossoms = [];
     
-    private $fruitCount;
+    private $fruitCount = [];
+    
+    private $harvest = 0;
     
     function grow()
     {
@@ -30,34 +32,36 @@ class AppleTree implements TreeInterface
     function bloom()
     {
         echo "The apple tree is blooming!  ";
-        $this->blossom = ($this->age * 2) * $this->branches;
-        echo "It has " . $this->blossom . " blossoms.<br/>";
+        $this->blossomAmount = ($this->age * 2) * $this->branches;
+        echo "It has " . $this->blossomAmount . " blossoms.<br/>";
         
-        for ($i = 0; $i < $this->blossom; $i++)
+        for ($i = 0; $i < $this->blossomAmount; $i++)
         {
             $this->blossoms[] = new Flower;
         }
         
         array_walk($this->blossoms, function ($flower){
             $flower->produceFruit();
+            array_push($this->fruitCount, $flower->fruitAmount());
         });
         
-        $this->fruitCount = count($this->blossoms);
+        $this->harvest = count($this->fruitCount);
 	}
     
     function watch()
     {
         $bugs = rand(0,1);
+        $bugsEat = rand(10, 20);
         if($bugs){
             echo "Found bugs on apples.  ";
-            $this->fruitCount = ($this->fruitCount - 10);
+            $this->harvest = $this->harvest - $bugsEat;
             echo "Sprayed tree with insecticide.<br/>";
 		}
 	}
     
     function harvest()
     {
-        echo "There were $this->fruitCount apples picked!<br/>";
+        echo "There were $this->harvest apples picked!<br/>";
     }
     
     function prune()
