@@ -12,7 +12,12 @@ for ($i = 0; $i < 10; $i++)
 }
 
 $seasons = new Season($trees);
-$seasons->spring();   
-$seasons->summer();   
-$seasons->fall();   
-$seasons->winter();   
+
+for ($i = 0; $i < 5; $i++)
+{
+    $seasons->spring();   
+    $seasons->summer();   
+    $seasons->fall();   
+    $seasons->winter(); 
+}
+  
