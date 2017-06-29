@@ -1,2 +1,2 @@
 # aphple-tree
-PHP Practice: An apple tree
+PHP Practice: Five years in the lives of 10 apple trees.
