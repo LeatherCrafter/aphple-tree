@@ -22,6 +22,7 @@ class Season
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->grow();
             $tree->bloom();
+            $tree->fertilize();
         });
         echo "<br/>";
 	}

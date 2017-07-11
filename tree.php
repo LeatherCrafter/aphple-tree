@@ -48,6 +48,15 @@ class AppleTree implements TreeInterface
         $this->harvest = count($this->fruitCount);
 	}
     
+    function fertilize()
+    {
+        $fertilized = rand(1,3);
+        $fertilizedGrowth = rand(10,20);
+        if ($fertilized != 1){
+            $this->harvest = $this->harvest + $fertilizedGrowth;
+        }
+    }
+    
     function watch()
     {
         $bugs = rand(0,1);
