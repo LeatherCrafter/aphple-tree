@@ -20,9 +20,9 @@ class Season
     {
         echo "It's springtime!<br/>";
         $this->apply($this->trees, function(TreeInterface $tree){
+            $tree->fertilize();
             $tree->grow();
             $tree->bloom();
-            $tree->fertilize();
         });
         echo "<br/>";
 	}

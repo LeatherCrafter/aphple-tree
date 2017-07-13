@@ -20,13 +20,22 @@ class AppleTree implements TreeInterface
     private $fruitCount = [];
     
     private $harvest = 0;
+        
+    function fertilize()
+    {
+        $fertilizedGrowthHeight = rand (0,2);
+        $fertilizedGrowthBranch = rand (0,3);
+        $this->height = $this->height + $fertilizedGrowthHeight;
+        $this->branches = $this->branches + $fertilizedGrowthBranch;
+        echo "Fertilized apple tree.  ";
+    }
     
     function grow()
     {
         $this->age++;
         $this->height = $this->height + 4;
         $this->branches = $this->branches + 2;
-        echo "The apple tree is $this->age years old, $this->height inches tall, and has $this->branches branches.<br/>";
+        echo "It is $this->age years old, $this->height inches tall, and has $this->branches branches.<br/>";
 	}
     
     function bloom()
@@ -47,15 +56,6 @@ class AppleTree implements TreeInterface
         
         $this->harvest = count($this->fruitCount);
 	}
-    
-    function fertilize()
-    {
-        $fertilized = rand(1,3);
-        $fertilizedGrowth = rand(10,20);
-        if ($fertilized != 1){
-            $this->harvest = $this->harvest + $fertilizedGrowth;
-        }
-    }
     
     function watch()
     {
