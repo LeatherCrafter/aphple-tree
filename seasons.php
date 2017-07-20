@@ -4,10 +4,13 @@ namespace Learning;
 
 class Season 
 {
-    protected $trees = [];
+    private $logger;
     
-    function __construct($trees)
+    private $trees = [];
+    
+    function __construct(LoggerInterface $logger, $trees)
     {
+        $this->logger = $logger;
         $this->trees = $trees;
     }
     
@@ -18,39 +21,39 @@ class Season
     
     function spring()
     {
-        echo "It's springtime!<br/>";
+        $this->logger->log("It's springtime!");
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->fertilize();
             $tree->grow();
             $tree->bloom();
         });
-        echo "<br/>";
+        $this->logger->log("<br/>");
 	}
     
     function summer()
     {
-        echo "It's summertime!<br/>";
+        $this->logger->log("It's summertime!");
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->watch();
         });
-        echo "<br/>";
+        $this->logger->log("<br/>");
 	}
     
     function fall()
     {
-        echo "It's fall, time to harvest!<br/>";
+        $this->logger->log("It's fall, time to harvest!");
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->harvest();
         });
-        echo "<br/>";
+        $this->logger->log("<br/>");
     }
     
     function winter()
     {
-        echo "It's wintertime!<br/>";
+        $this->logger->log("It's wintertime!");
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->prune();
         });
-        echo "<br/><br/>";
+        $this->logger->log("<br/><br/>");
     }
 }

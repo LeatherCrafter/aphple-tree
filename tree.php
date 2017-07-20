@@ -7,19 +7,33 @@ require_once 'flower.php';
 
 class AppleTree implements TreeInterface 
 {
-    private $age = 4;
+    private $logger;
     
-    private $height = 72;
+    private $age;
     
-    private $branches = 10;
+    private $height;
     
-    private $blossomAmount = 0;
+    private $branches;
     
-    private $blossoms = [];
+    private $blossomAmount;
     
-    private $fruitCount = [];
+    private $blossoms;
     
-    private $harvest = 0;
+    private $fruitCount;
+    
+    private $harvest;
+    
+    public function __construct(LoggerInterface $logger, $age = 4)
+    {
+        $this->logger = $logger;
+        $this->age = $age;
+        $this->height = self::DEFAULT_HEIGHT;
+        $this->branches = self::DEFAULT_BRANCHES;
+        $this->blossomAmount = self::DEFAULT_BLOSSOMAMOUNT;
+        $this->blossoms = self::DEFAULT_BLOSSOMS;
+        $this->fruitCount = self::DEFAULT_FRUITCOUNT;
+        $this->harvest = self::DEFAULT_HARVEST;
+    }
         
     function fertilize()
     {
@@ -27,7 +41,7 @@ class AppleTree implements TreeInterface
         $fertilizedGrowthBranch = rand (0,3);
         $this->height = $this->height + $fertilizedGrowthHeight;
         $this->branches = $this->branches + $fertilizedGrowthBranch;
-        echo "Fertilized apple tree.  ";
+        $this->logger->log("Fertilized apple tree.");
     }
     
     function grow()
@@ -35,14 +49,14 @@ class AppleTree implements TreeInterface
         $this->age++;
         $this->height = $this->height + 4;
         $this->branches = $this->branches + 2;
-        echo "It is $this->age years old, $this->height inches tall, and has $this->branches branches.<br/>";
+        $this->logger->log("The apple tree is $this->age years old, $this->height inches tall, and has $this->branches branches.");
 	}
     
     function bloom()
     {
-        echo "The apple tree is blooming!  ";
+        $this->logger->log("The apple tree is blooming!");
         $this->blossomAmount = ($this->age * 2) * $this->branches;
-        echo "It has " . $this->blossomAmount . " blossoms.<br/>";
+        $this->logger->log("It has " . $this->blossomAmount . " blossoms.");
         
         for ($i = 0; $i < $this->blossomAmount; $i++)
         {
@@ -62,15 +76,15 @@ class AppleTree implements TreeInterface
         $bugs = rand(0,1);
         $bugsEat = rand(10, 20);
         if($bugs){
-            echo "Found bugs on apples.  ";
+            $this->logger->log("Found bugs on apples.");
             $this->harvest = $this->harvest - $bugsEat;
-            echo "Sprayed tree with insecticide.<br/>";
+            $this->logger->log("Sprayed tree with insecticide.");
 		}
 	}
     
     function harvest()
     {
-        echo "There were $this->harvest apples picked!<br/>";
+        $this->logger->log("There were $this->harvest apples picked!");
     }
     
     function prune()
@@ -78,7 +92,7 @@ class AppleTree implements TreeInterface
         $bad_limb = rand(0,1);
         if ($bad_limb){
             $this->branches--;
-            echo "Pruned an undesirable branch off the tree.<br/>";
+            $this->logger->log("Pruned an undesirable branch off the tree.");
         }
     }
 }
