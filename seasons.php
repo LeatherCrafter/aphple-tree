@@ -8,10 +8,13 @@ class Season
     
     private $trees = [];
     
-    function __construct(LoggerInterface $logger, $trees)
+    private $year;
+    
+    function __construct(LoggerInterface $logger, $trees, $year)
     {
         $this->logger = $logger;
         $this->trees = $trees;
+        $this->year = $year;
     }
     
     function apply($trees, callable $callback)
@@ -21,7 +24,8 @@ class Season
     
     function spring()
     {
-        $this->logger->log("It's springtime!");
+        $this->logger->log("It's springtime in $this->year!");
+        $this->year++;
         $this->apply($this->trees, function(TreeInterface $tree){
             $tree->fertilize();
             $tree->grow();
@@ -42,9 +46,6 @@ class Season
     function fall()
     {
         $this->logger->log("It's fall, time to harvest!");
-        $this->apply($this->trees, function(TreeInterface $tree){
-            $tree->harvest();
-        });
         $this->logger->log("<br/>");
     }
     
