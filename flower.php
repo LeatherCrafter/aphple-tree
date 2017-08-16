@@ -6,8 +6,8 @@ require_once 'fruit.php';
 
 class Flower
 {
-    public $fruitArray = [];
-    public $fruit = 0;
+    private $fruitArray = [];
+    private $fruit = 0;
     
     function produceFruit()
     {

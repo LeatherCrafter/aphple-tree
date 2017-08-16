@@ -19,6 +19,10 @@ class AppleTree implements TreeInterface
     
     private $blossoms;
     
+    private $bug;
+    
+    private $prune;
+    
     private $fruitCount;
     
     private $harvest;
@@ -31,6 +35,8 @@ class AppleTree implements TreeInterface
         $this->branches = self::DEFAULT_BRANCHES;
         $this->blossomAmount = self::DEFAULT_BLOSSOMAMOUNT;
         $this->blossoms = self::DEFAULT_BLOSSOMS;
+        $this->bug = self::DEFAULT_BUG;
+        $this->prune = self::DEFAULT_PRUNE;
         $this->fruitCount = self::DEFAULT_FRUITCOUNT;
         $this->harvest = self::DEFAULT_HARVEST;
     }
@@ -41,7 +47,6 @@ class AppleTree implements TreeInterface
         $fertilizedGrowthBranch = rand (0,3);
         $this->height = $this->height + $fertilizedGrowthHeight;
         $this->branches = $this->branches + $fertilizedGrowthBranch;
-        $this->logger->log("Fertilized apple tree.");
     }
     
     function grow()
@@ -49,14 +54,11 @@ class AppleTree implements TreeInterface
         $this->age++;
         $this->height = $this->height + 4;
         $this->branches = $this->branches + 2;
-        $this->logger->log("The apple tree is $this->age years old, $this->height inches tall, and has $this->branches branches.");
 	}
     
     function bloom()
     {
-        $this->logger->log("The apple tree is blooming!");
         $this->blossomAmount = ($this->age * 2) * $this->branches;
-        $this->logger->log("It has " . $this->blossomAmount . " blossoms.");
         
         for ($i = 0; $i < $this->blossomAmount; $i++)
         {
@@ -76,23 +78,26 @@ class AppleTree implements TreeInterface
         $bugs = rand(0,1);
         $bugsEat = rand(10, 20);
         if($bugs){
-            $this->logger->log("Found bugs on apples.");
+            $this->bug = 1;
             $this->harvest = $this->harvest - $bugsEat;
-            $this->logger->log("Sprayed tree with insecticide.");
-		}
+		} else {
+            $this->bug = 0;
+        }
 	}
-    
-    function harvest()
-    {
-        $this->logger->log("There were $this->harvest apples picked!");
-    }
     
     function prune()
     {
         $bad_limb = rand(0,1);
         if ($bad_limb){
+            $this->prune = 1;
             $this->branches--;
-            $this->logger->log("Pruned an undesirable branch off the tree.");
+        } else {
+            $this->prune = 0;
         }
+    }
+    
+    function status()
+    {
+        return "$this->age,$this->height,$this->branches,$this->bug,$this->harvest,$this->prune";
     }
 }
